@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE LIGO_LW [
+<!ELEMENT LIGO_LW ((LIGO_LW|Comment|Param|Table|Array|Stream|IGWDFrame|AdcData|Time)*)>
+<!ATTLIST LIGO_LW
+          Name CDATA #IMPLIED
+          Type CDATA #IMPLIED>
+
+<!ELEMENT Comment (#PCDATA)>
+
+<!ELEMENT Param (#PCDATA|Comment)*>
+<!ATTLIST Param 
+          Name CDATA #IMPLIED
+          Type CDATA #IMPLIED
+          Unit CDATA #IMPLIED>
+
+<!ELEMENT Table (Comment?,Column*,Stream?)>
+<!ATTLIST Table 
+          Name CDATA #IMPLIED
+          Type CDATA #IMPLIED>
+
+<!ELEMENT Column EMPTY>
+<!ATTLIST Column
+          Name CDATA #IMPLIED
+          Type CDATA #IMPLIED
+          Unit CDATA #IMPLIED>
+
+<!ELEMENT Array (Dim*,Stream?)>
+<!ATTLIST Array 
+          Name CDATA #IMPLIED
+          Type CDATA #IMPLIED>
+
+<!ELEMENT Dim (#PCDATA)>
+<!ATTLIST Dim 
+          Name  CDATA #IMPLIED
+          Units CDATA #IMPLIED>
+
+<!ELEMENT Stream (#PCDATA)>
+<!ATTLIST Stream 
+          Name      CDATA #IMPLIED
+          Type      (Remote|Local) "Local"
+          Delimiter CDATA ","
+          Encoding  CDATA #IMPLIED
+          Content   CDATA #IMPLIED>
+
+<!ELEMENT IGWDFrame ((Comment|Param|Time|Detector|AdcData|LIGO_LW|Stream?|Array)*)>
+<!ATTLIST IGWDFrame 
+          Name CDATA #IMPLIED>
+
+<!ELEMENT Detector ((Comment|Param|LIGO_LW)*)>
+<!ATTLIST Detector 
+          Name CDATA #IMPLIED>
+
+<!ELEMENT AdcData ((AdcData|Comment|Param|Time|LIGO_LW|Array)*)>
+<!ATTLIST AdcData 
+          Name CDATA #IMPLIED>
+
+<!ELEMENT Time (#PCDATA)>
+<!ATTLIST Time 
+          Name CDATA #IMPLIED
+          Type (GPS|Unix|ISO-8601) "ISO-8601">
+]>
+
+<LIGO_LW Name="ligo:ldas:file">
+   <Comment>SQL=SELECT * FROM GDS_TRIGGER where binarydata_length &gt; 0 ORDER BY start_time, name, subtype FETCH FIRST 10 ROWS ONLY FOR READ ONLY</Comment>
+   <Table Name="ldasgroup:row:table">
+      <Comment>row:data:table</Comment>
+      <Column Name="CREATOR_DB" Type="int_4s"/>
+      <Column Name="PROCESS_ID" Type="ilwd:char_u"/>
+      <Column Name="FILTER_ID" Type="ilwd:char_u"/>
+      <Column Name="NAME" Type="lstring"/>
+      <Column Name="SUBTYPE" Type="lstring"/>
+      <Column Name="IFO" Type="lstring"/>
+      <Column Name="START_TIME" Type="int_4s"/>
+      <Column Name="START_TIME_NS" Type="int_4s"/>
+      <Column Name="DURATION" Type="real_4"/>
+      <Column Name="PRIORITY" Type="int_4s"/>
+      <Column Name="DISPOSITION" Type="int_4s"/>
+      <Column Name="SIZE" Type="real_4"/>
+      <Column Name="SIGNIFICANCE" Type="real_4"/>
+      <Column Name="FREQUENCY" Type="real_4"/>
+      <Column Name="BINARYDATA" Type="ilwd:char_u"/>
+      <Column Name="BINARYDATA_LENGTH" Type="int_4s"/>
+      <Column Name="EVENT_ID" Type="ilwd:char_u"/>
+      <Stream Name="ldasgroup:row:table" Delimiter=",">
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H0:PEM-BSC1_MAG1X               ","H2",638834113,500000000,0,0,9,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\051\024\104\223\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H0:PEM-BSC1_MAG1X               ","H2",638834121,187500000,0,0,13,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\007\122\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H0:PEM-BSC1_MAG1X               ","H2",638834121,250000000,0,0,18,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\023\111\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H0:PEM-BSC1_MAG1Y               ","H2",638834121,187500000,0,0,14,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\010\161\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H0:PEM-BSC1_MAG1Y               ","H2",638834121,250000000,0,0,19,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\024\150\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H2:ASC-WFS2_IY                  ","H2",638834121,250000000,0,0,22,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\104\126\046\042\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H2:IOO-MC_F                     ","H2",638834121,187500000,0,0,15,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\011\221\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H2:LSC-AS_DC_TEMP               ","H2",638834121,187500000,0,0,16,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\021\020\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H2:LSC-AS_Q_TEMP                ","H2",638834121,250000000,0,0,20,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\025\210\000\000\000",
+         1,"\040\000\006\050\043\070\043\000\000\000\001\000\000",,"Jump16                          ","H2:PSL-FSS_FAST_F               ","H2",638834121,187500000,0,0,17,1,1,0,"\000\027\154\150\000\000\000\001\000\000\000\001\000\027\154\270\000\027\154\310\000\007\004\330\000\000\000\000\000\027\154\330\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000",48,"\040\000\006\050\043\070\063\111\022\051\000\000\000"
+      </Stream>
+   </Table>
+   <Table Name="ldasgroup:row2:table">
+      <Comment>row2:data:table</Comment>
+      <Column Name="PROCESS_ID" Type="ilwd:char_u"/>
+      <Stream Name="ldasgroup:row2:table" Type="Local" Delimiter=";">
+         "\040\000\006\050\043\070\043\000\000\000\001\000\000";
+         "\040\000\006\050\043\070\043\000\000\000\001\000\000";
+         "\040\000\006\050\043\070\043\000\000\000\001\000\000"
+      </Stream>
+   </Table>
+   <Table Name="ldasgroup:row3:table">
+      <Comment>row3:data:table</Comment>
+      <Column Name="PROCESS_ID" Type="int_4s"/>
+      <Stream Name="ldasgroup:row3:table" Type="Local" Delimiter=":">
+        1:
+        2:
+        3:
+        4
+      </Stream>
+   </Table>
+</LIGO_LW>

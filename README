@@ -1,0 +1,5 @@
+This is the master copy of the metaio library code and the utilities based on
+it.  The LIGOtools 'metaio' package and lscsoft 'libmetaio' module are derived
+from this repository.  Doing 'make ligotools' in this directory creates the
+tar.gz files which are distributed via ligotools and used as the basis for
+the LIGOtools 'metaio' package.

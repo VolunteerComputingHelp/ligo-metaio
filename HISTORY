@@ -1,0 +1,94 @@
+=============================================================================
+VERSION 6.0
+-----------
+
+Split off from 'dataflow' package on October 25, 2005.  All "extra"
+metaio-related stuff, like the 'lwtselect' and 'concatMeta' Tcl
+scripts, have been moved into the metaio CVS.  This 'metaio' LIGOtools
+package now builds from source code tarball from metaio CVS.  See the
+'README' file for some more details about getting the source code.
+
+A shared-object library, libmetaio.so, is built if you build from the
+source distribution, but it is not included in the precompiled binary
+distribution.
+
+Version 6.0 released on 28 Oct 2005
+
+=============================================================================
+VERSION 6.1
+-----------
+
+New version of metaio library, allowing the Column "Name" and "Type"
+attributes to be given in either order.
+
+Version 6.1 released on 7 Feb 2006
+
+
+=============================================================================
+VERSION 7.0
+-----------
+
+New version of metaio library which can read compressed xml files. Build
+correctly on 32 and 64 bit machines using gnu autotools scripts.
+
+Version 7.0 released on June 22, 2007
+
+=============================================================================
+VERSION 7.1
+-----------
+
+Fixed several bugs which were present in the 7.0 release:
+
+  - octal ilwd:char_u data in streams can now be read in gzipped xml files
+  - fixed a bug in MetaioClose() that caused the longjmp() to be called 
+    when reading a table with a single XML file.
+  - added a workaround to reset the Z_DATA_ERROR return value from gzclose()
+    in destroy_parse_env() due to a bug in zlib 1.2.2
+
+Version 7.1 released on June 29, 2007
+
+=============================================================================
+VERSION 7.2
+-----------
+
+Fixed several bugs in the 7.1 release:
+
+  - Release tablename string storage when the parse environment is destroyed.
+  - Initialize nvars variable int lwtprint.
+  - Add a null to the end of the string in gzvscanf.
+
+Added a version number to the shared object library.
+
+Version 7.2 released on November 21, 2007
+
+=============================================================================
+VERSION 8.0
+-----------
+
+- Add support for types "int_2u", "int_4u", "int_8u", "char_v", "char_s",
+  and "blob".
+- Combine storage for lstring and ilwd:char types
+- Fix numerous parsing and output formating bugs in metaio.c.
+- Make parsing rules compatible with glue.ligolw.
+- Bump library API version number due to API change and file format change.
+- Fix configure script bugs related to identification of zlib support.
+
+Version 8.0 released on 2008-07-08.
+
+=============================================================================
+VERSION 8.1
+-----------
+
+- Bump library API version number for real.
+
+Version 8.1 released on 2008-07-15.
+
+=============================================================================
+VERSION 8.3
+-----------
+
+- Add additional internal error checking.
+
+Version 8.3 released on 2009-10-13.
+
+

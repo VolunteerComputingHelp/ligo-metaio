@@ -1,0 +1,229 @@
+#!/bin/sh
+
+## "lwtselect"
+## Utility to select a single table from a LIGO_LW file
+## Written by Peter Shawhan, September 2001
+## Bug fix by Rauha Rahkola, October 2002
+# $Id$
+
+## This script is a hybrid of sh and Tcl/Tk commands.
+
+## Use "tclshexe" if it is in the PATH, otherwise use "tclsh" #\
+shell=tclsh                                                   #\
+for dir in `echo $PATH | perl -p -e "s/:/ /g"`; do            #\
+  if test -x $dir/tclshexe; then shell=tclshexe; fi           #\
+done                                                          #\
+exec $shell "$0" ${1+"$@"}                                    #\
+
+##=========================================================================
+## Name: Main
+##
+
+proc Main {} {
+
+    ;##- Set defaults
+    set file ""
+    set tableSpec ""
+
+    ;##- If there were no arguments, just print usage info and exit
+    if { [llength $::argv] == 0 } {
+	PrintUsage long; exit 0
+    }
+
+    ;##- Parse arguments
+    set option ""
+    foreach arg $::argv {
+
+	if { [string match -* $arg] } {
+	    set option [string range $arg 0 1]
+	    set val [string range $arg 2 end]
+	} else {
+	    set val $arg
+	}
+
+	switch -- $option {
+
+	    -t {
+		if { ! [string is space $val] } {
+		    if { ! [string is space $tableSpec] } {
+			PrintUsage; exit 1
+		    }
+		    set tableSpec $val
+		    set option ""
+		}
+	    }
+
+	    "" {
+		;##- Interpret this as the input file
+		if { ! [string is space $file] } { PrintUsage; exit 1 }
+		set file $val
+	    }
+
+	    default {
+		puts stderr "Invalid option $option"; PrintUsage; exit 1
+	    }
+
+	}  ;##- End of switch
+
+    }  ;##- End of loop over arguments
+
+    ;##- Check that the file and table were specified
+    if { [string is space $file] } {
+	puts stderr "You did not specify the input file"
+	PrintUsage; exit 1
+    }
+    if { [string is space $tableSpec] } {
+	puts stderr "You did not specify the table to be selected"
+	PrintUsage; exit 1
+    }
+
+    ;##- See whether the table specification is a number or a name
+    if { [string is integer $tableSpec] } {
+	if { $tableSpec < 1 } {
+	    puts stderr "Tables in the file are counted starting with 1"
+	    PrintUsage; exit 1
+	}
+	set isnumber 1
+    } else {
+	set isnumber 0
+    }
+
+    ;##- Open the input file
+    if { [catch {open $file r} fid] } {
+	puts stderr "Error: $fid"
+	exit 2
+    }
+
+    ;##- Initialize some things
+    set state 0
+    set header ""
+    set tableCounter 0
+
+    while { ! [eof $fid] } {
+	gets $fid line
+	switch $state {
+	    0 {
+		append header $line "\n"
+		if { [regexp {<LIGO_LW} $line] } {
+		    set state 1
+		    set active 0
+		}
+	    }
+
+	    1 {
+		if { [regexp {<Table} $line] } {
+		    incr tableCounter
+		    if { $isnumber } {
+			if { $tableCounter == $tableSpec } {
+			    set state 2
+			    puts -nonewline $header
+			    puts $line
+			}
+		    } else {
+			;##- Check the table name
+			if { ! [regexp {<Table [^>]*Name="([^\"]+)"} $line \
+				match tableName] } {
+			    puts stderr "Unable to determine name of\
+				    table $tableCounter"
+			    close $fid
+			    exit 2
+			}
+
+			;##- Strip off trailing ':table' postfix
+			regsub -nocase {:table$} $tableName {} tableName
+
+			;##- Strip off any colon-delimited prefixes
+			regsub -all {.*:} $tableName {} tableName
+
+			;##- See if this table name matches the specification
+			if { [string equal -nocase $tableName $tableSpec] } {
+			    set state 2
+			    puts -nonewline $header
+			    puts $line
+			}
+		    }
+		}		
+	    }
+
+	    2 {
+		puts $line
+		if { [regexp {</Table} $line] } {
+		    set state 3
+		}
+	    }
+
+	    3 {
+		if { [regexp {</LIGO_LW} $line] } {
+		    puts $line
+		    set state 4
+		}
+	    }
+
+	    4 {
+	    }
+
+	} ;##- End of switch
+    } ;##- End of while loop
+
+    close $fid
+
+    ;##- See what the state code is
+    switch $state {
+	0 {
+	    puts stderr "Not a well-formed LIGO_LW file"
+	    exit 2
+	}
+
+	1 {
+	    if { $isnumber } {
+		puts stderr "File contains only $tableCounter tables"
+	    } else {
+		puts stderr "No matching table in file"
+	    }
+	    exit 2
+	}
+
+	2 -
+	3 {
+	    puts stderr "File ends prematurely"
+	    exit 2
+	}
+
+    }
+
+    return
+}
+
+
+##=========================================================================
+## Name: PrintUsage  (Prints usage information to stderr)
+##
+
+proc PrintUsage { {amount "short"} } {
+
+    if { $amount == "short" } {
+	puts stderr "Usage:  lwtselect <file> -t <table>"
+	puts stderr "Type 'lwtselect' by itself for more detailed information"
+	return
+    }
+
+    puts stderr {
+Usage:  lwtselect <file> -t <table>
+This utility selects a single table from a LIGO_LW file containing multiple
+    tables, and writes it (as a well-formed LIGO_LW file) to standard output.
+The '-t' option specifies the table to be selected.  It can be a number
+    (where 1 indicates the first table), or a name (not case sensitive).
+}
+
+    return
+}
+
+
+##=========================================================================
+## Name: main
+##
+## Comments:
+##   OK, we've defined all the procs, including Main.  Now run it!
+
+;#barecode
+Main

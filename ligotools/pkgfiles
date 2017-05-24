@@ -1,0 +1,51 @@
+#!/usr/bin/env perl
+##
+## pkgfiles
+## Written by Peter Shawhan
+## $Id$
+
+@dirlist = ();
+$idir = -1;
+@filelist = ();
+
+#-- If any arguments were given, use those as the base list.  Otherwise, use
+#-- everything in this directory
+if ( $#ARGV >= 0 ) {
+    @itemlist = @ARGV;
+} else {
+    @itemlist = sort(<*>);
+}
+
+#-- Determine the name of the package from the current working directory
+$cwd = `pwd`; chop $cwd;
+($package) = ( $cwd =~ m%([^/]+)$% );
+
+while ( $#itemlist >= 0 ) {
+    foreach $item ( @itemlist ) {
+	
+	#-- Omit CVS files, backup files, and LIGOtools distribution files
+	if ( $item =~ m/(CVS|~|ligotools_init_.+\.tar|$package_[0-9].*_[A-Z]+.*\.gz)$/ ) { next; }
+
+	if ( -d $item ) {
+	    #-- Append to list of directories
+	    @dirlist = ( @dirlist, $item );
+	} else {
+	    @filelist = ( @filelist, $item );
+	}
+    }
+    #-- Advance to next directory
+    $idir++;
+    if ( $idir <= $#dirlist ) {
+	@itemlist = sort(<$dirlist[$idir]/*>);
+    } else {
+	@itemlist = ();
+    }
+}
+
+#-- Output the list
+$ifile = 0;
+foreach $file ( @filelist ) {
+    if ( $ifile ) { print " "; }
+    $ifile++;
+    print $file;
+}

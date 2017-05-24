@@ -1,0 +1,8 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+
+Name: @PACKAGE@
+Description: LIGO Light-Weight XML I/O library
+Version: @PACKAGE_VERSION@
+Libs: -L@libdir@ -lmetaio
+Cflags: -I@includedir@

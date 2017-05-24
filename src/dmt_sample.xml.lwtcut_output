@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE LIGO_LW [<!ELEMENT LIGO_LW ((LIGO_LW|Comment|Param|Table|Array|Stream|IGWDFrame|AdcData|AdcInterval|Time|Detector)*)><!ATTLIST LIGO_LW          Name CDATA #IMPLIED          Type CDATA #IMPLIED><!ELEMENT Comment (#PCDATA)><!ELEMENT Param (#PCDATA|Comment)*><!ATTLIST Param           Name CDATA #IMPLIED          Type CDATA #IMPLIED          Start CDATA #IMPLIED          Scale CDATA #IMPLIED          Unit CDATA #IMPLIED          DataUnit CDATA #IMPLIED><!ELEMENT Table (Comment?,Column*,Stream?)><!ATTLIST Table           Name CDATA #IMPLIED          Type CDATA #IMPLIED><!ELEMENT Column EMPTY><!ATTLIST Column          Name CDATA #IMPLIED          Type CDATA #IMPLIED          Unit CDATA #IMPLIED><!ELEMENT Array (Dim*,Stream?)><!ATTLIST Array           Name CDATA #IMPLIED          Type CDATA #IMPLIED          Unit CDATA #IMPLIED><!ELEMENT Dim (#PCDATA)><!ATTLIST Dim           Name  CDATA #IMPLIED          Unit CDATA #IMPLIED          Start CDATA #IMPLIED          Scale CDATA #IMPLIED><!ELEMENT Stream (#PCDATA)><!ATTLIST Stream           Name      CDATA #IMPLIED          Type      (Remote|Local) "Local"          Delimiter CDATA ","          Encoding  CDATA #IMPLIED          Content   CDATA #IMPLIED><!ELEMENT IGWDFrame ((Comment|Param|Time|Detector|AdcData|LIGO_LW|Stream?|Array|IGWDFrame)*)><!ATTLIST IGWDFrame           Name CDATA #IMPLIED><!ELEMENT Detector ((Comment|Param|LIGO_LW)*)><!ATTLIST Detector           Name CDATA #IMPLIED><!ELEMENT AdcData ((AdcData|Comment|Param|Time|LIGO_LW|Array)*)><!ATTLIST AdcData           Name CDATA #IMPLIED><!ELEMENT AdcInterval ((AdcData|Comment|Time)*)><!ATTLIST AdcInterval           Name CDATA #IMPLIED          StartTime CDATA #IMPLIED          DeltaT CDATA #IMPLIED><!ELEMENT Time (#PCDATA)><!ATTLIST Time           Name CDATA #IMPLIED          Type (GPS|Unix|ISO-8601) "ISO-8601">]><LIGO_LW Name="ligo:metaio:file">
+	<Table Name="gds_triggergroup:gds_trigger:table">
+		<Comment></Comment>
+		<Column Name="gds_triggergroup:gds_trigger:process_id" Type="ilwd:char_u"/>
+		<Column Name="gds_triggergroup:gds_trigger:name" Type="lstring"/>
+		<Column Name="gds_triggergroup:gds_trigger:subtype" Type="lstring"/>
+		<Column Name="gds_triggergroup:gds_trigger:ifo" Type="lstring"/>
+		<Column Name="gds_triggergroup:gds_trigger:start_time" Type="int_4s"/>
+		<Column Name="gds_triggergroup:gds_trigger:start_time_ns" Type="int_4s"/>
+		<Column Name="gds_triggergroup:gds_trigger:duration" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:priority" Type="int_4s"/>
+		<Column Name="gds_triggergroup:gds_trigger:disposition" Type="int_4s"/>
+		<Column Name="gds_triggergroup:gds_trigger:size" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:significance" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:frequency" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:bandwidth" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:time_peak" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:time_average" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:time_sigma" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:freq_peak" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:freq_average" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:freq_sigma" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:noise_power" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:signal_power" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:pixel_count" Type="int_4s"/>
+		<Column Name="gds_triggergroup:gds_trigger:confidence" Type="real_4"/>
+		<Column Name="gds_triggergroup:gds_trigger:binarydata" Type="ilwd:char_u"/>
+		<Column Name="gds_triggergroup:gds_trigger:binarydata_length" Type="int_4s"/>
+		<Column Name="gds_triggergroup:gds_trigger:event_id" Type="ilwd:char"/>
+		<Stream Name="gds_triggergroup:gds_trigger:table" Type="Local" Delimiter=",">
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743773,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:0",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743774,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:1",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743778,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:2",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743779,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:3",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743780,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:4",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743781,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:5",
+			"\040\007\002\047\040\011\064\000\001\006\001\000\000","Glitch","L0:PEM-BSC3_ACCX","L0",856743783,375976563,0.100097999,0,1,150.244995,6.84319019,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:6",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsX","L0",856743780,0,10,0,1,34.6582985,1,1.79999995,0.600000024,0,0,0,1.79999995,1.95211005,0,117.241997,483.358002,0,0,"",0,"gds_trigger:event_id:7",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsY","L0",856743780,0,10,0,1,48.7542,1,1.79999995,0.600000024,0,0,0,1.79999995,1.91269004,0,148.802994,1039.68005,0,0,"",0,"gds_trigger:event_id:8",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsY","L0",856743785,0,10,0,1,51.9501991,1,1.79999995,0.600000024,0,0,0,1.79999995,1.88698995,0,153.794998,1195.62,0,0,"",0,"gds_trigger:event_id:9",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsY","L0",856743790,0,10,0,1,40.0760002,1,1.79999995,0.600000024,0,0,0,1.89999998,1.91886997,0,156.494003,646.547974,0,0,"",0,"gds_trigger:event_id:10",
+			"\040\007\002\047\040\011\060\000\001\003\001\000\000","PlaneMon","L0:PEM-BSC4_MIC","",856743808,0,120,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:11",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743818,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:12",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743819,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:13",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsX","L0",856743815,0,10,0,1,28.6077995,1,1.79999995,0.600000024,0,0,0,2,1.94623995,0,120.296997,288.904999,0,0,"",0,"gds_trigger:event_id:14",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisCoX","L0",856743820,0,10,0,1,57.1795998,1,0.400000006,0.5,0,0,0,0.400000006,0.440165997,0,486.872009,1147.88,0,0,"",0,"gds_trigger:event_id:15",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","X_arm_lock_acquired","L1",856743844,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:16",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743844,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:17",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Both_arms_lock_acquired","L1",856743844,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:18",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","X_arm_lock_lost","L1",856743846,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:19",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743846,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:20",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Both_arms_lock_lost","L1",856743846,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:21",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743858,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:22",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743859,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:23",
+			"\040\007\002\047\040\011\045\000\000\225\001\000\000","BitTest","L0:PEM-BSC2_MIC","L0",856743577,0,300,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\340\377\357\100\000\000\000\000\340\377\357\100\000\000\000\000\000\000\000\000",48,"gds_trigger:event_id:24",
+			"\040\007\002\047\040\011\045\000\000\225\001\000\000","BitTest","L1:SUS-ETMY_SENSOR_LR","L1",856743577,0,300,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"\000\000\000\000\000\300\042\101\000\000\000\000\000\200\135\100\000\000\000\000\000\000\000\000\000\000\000\000\000\000\310\100\000\000\000\000\000\000\350\100\000\000\000\000\000\000\000\000",48,"gds_trigger:event_id:25",
+			"\040\007\002\047\040\011\064\000\001\006\001\000\000","Glitch","L0:PEM-BSC3_ACCX","L0",856743885,955078125,0.124512002,0,1,123.686996,5.61154985,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:26",
+			"\040\007\002\047\040\011\064\000\001\006\001\000\000","Glitch","L0:PEM-BSC3_ACCX","L0",856743901,909667969,0.111327998,0,1,196.026001,8.20654964,0,0,0.0078125,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:27",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743917,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:28",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743918,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:29",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmY","L0",856743915,0,10,0,1,33.5845985,1,0.899999976,0.200000003,0,0,0,0.899999976,0.941748977,0,98.0771027,465.884003,0,0,"",0,"gds_trigger:event_id:30",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmX","L0",856743920,0,10,0,1,34.3078995,1,0.899999976,0.200000003,0,0,0,0.899999976,0.94372201,0,55.0844994,533.432983,0,0,"",0,"gds_trigger:event_id:31",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmY","L0",856743920,0,10,0,1,61.9807014,1,0.899999976,0.200000003,0,0,0,1,0.960005999,0,105.655998,1815.15002,0,0,"",0,"gds_trigger:event_id:32",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisCoY","L0",856743920,0,10,0,1,65.8906021,1,0.400000006,0.5,0,0,0,0.5,0.532175004,0,577.969971,1592.81995,0,0,"",0,"gds_trigger:event_id:33",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisCoX","L0",856743925,0,10,0,1,56.4812012,1,0.400000006,0.5,0,0,0,0.400000006,0.484439999,0,504.222992,1090.83997,0,0,"",0,"gds_trigger:event_id:34",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisCoY","L0",856743925,0,10,0,1,66.0357971,1,0.400000006,0.5,0,0,0,0.400000006,0.58288902,0,584.632996,1595.72998,0,0,"",0,"gds_trigger:event_id:35",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsX","L0",856743925,0,10,0,1,31.3796005,1,1.79999995,0.600000024,0,0,0,2,2.01779008,0,120.560997,371.778992,0,0,"",0,"gds_trigger:event_id:36",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmY","L0",856743930,0,10,0,1,36.5800018,1,0.899999976,0.200000003,0,0,0,0.899999976,0.942221999,0,107.750999,561.296997,0,0,"",0,"gds_trigger:event_id:37",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisCoX","L0",856743930,0,10,0,1,57.2447014,1,0.400000006,0.5,0,0,0,0.400000006,0.583709002,0,508.938995,1129.54004,0,0,"",0,"gds_trigger:event_id:38",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmX","L0",856743935,0,10,0,1,25.1256008,1,0.899999976,0.200000003,0,0,0,1,0.950106978,0,56.4910011,259.157013,0,0,"",0,"gds_trigger:event_id:39",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisBsX","L0",856743935,0,10,0,1,31.4188004,1,1.79999995,0.600000024,0,0,0,2,1.99102998,0,122.162003,371.408997,0,0,"",0,"gds_trigger:event_id:40",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisCoY","L0",856743940,0,10,0,1,70.4654007,1,0.400000006,0.5,0,0,0,0.400000006,0.455581993,0,595.211975,1887.46997,0,0,"",0,"gds_trigger:event_id:41",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmY","L0",856743950,0,10,0,1,33.7313004,1,0.899999976,0.200000003,0,0,0,0.899999976,0.92899698,0,110.767998,458.132996,0,0,"",0,"gds_trigger:event_id:42",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743964,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:43",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856743965,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:44",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","SeisSmX","L0",856743960,0,10,0,1,28.7749996,1,0.899999976,0.200000003,0,0,0,0.899999976,0.941402972,0,59.3078995,354.692993,0,0,"",0,"gds_trigger:event_id:45",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","X_arm_lock_acquired","L1",856743980,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:46",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","X_arm_lock_lost","L1",856743981,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:47",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","X_arm_lock_acquired","L1",856743993,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:48",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_acquired","L1",856743994,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:49",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Both_arms_lock_acquired","L1",856743995,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:50",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","X_arm_lock_lost","L1",856744001,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:51",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Y_arm_lock_lost","L1",856744001,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:52",
+			"\040\007\002\047\040\011\051\000\001\002\001\000\000","Lock transition","Both_arms_lock_lost","L1",856744001,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,"",0,"gds_trigger:event_id:53",
+			"\040\007\002\047\040\011\061\000\001\004\001\000\000","RMSBand","l1viol","L1",856743995,0,10,0,1,1.60361004,1,340,10,0,0,0,343.100006,345.083008,0,0.264820993,1.02094996,0,0,"",0,"gds_trigger:event_id:54"
+		</Stream>
+	</Table>
+</LIGO_LW>

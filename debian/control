@@ -1,0 +1,44 @@
+Source: metaio
+Section: lscsoft
+Priority: optional
+Maintainer: Kipp Cannon <kipp.cannon@ligo.org>
+Build-Depends: debhelper (>= 7.0.0), zlib1g-dev
+Standards-Version: 3.8.6
+
+Package: libmetaio1
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: LIGO Light-Weight XML I/O library
+ This code implements a simple recursive-descent parsing scheme for LIGO_LW
+ files, based on the example in Chapter 2 of "Compilers: Principles,
+ Techniques and Tools" by Aho, Sethi and Ullman.  Written by Philip
+ Charlton and Peter Shawhan.
+ .
+ This package contains the shared-object library needed to run libmetaio
+ applications.
+
+Package: libmetaio-dev
+Architecture: any
+Depends: libmetaio1 (= ${Source-Version})
+Breaks: libmetaio1 (<< ${Source-Version})
+Replaces: libmetaio1 (<< ${Source-Version})
+Description: LIGO Light-Weight XML I/O library
+ This code implements a simple recursive-descent parsing scheme for LIGO_LW
+ files, based on the example in Chapter 2 of "Compilers: Principles,
+ Techniques and Tools" by Aho, Sethi and Ullman.  Written by Philip
+ Charlton and Peter Shawhan.
+ .
+ This package contains the files needed for building libmetaio programs.
+
+Package: libmetaio-matlab
+Architecture: any
+Depends: libmetaio1 (= ${Source-Version})
+Description: LIGO Light-Weight XML I/O library
+ This package provides the MatLab readMeta module from libmetaio.
+
+Package: libmetaio-utils
+Architecture: any
+Depends: libmetaio1 (= ${Source-Version})
+Description: LIGO Light-Weight XML I/O library
+ This package provides the utilities, such as lwtprint, which accompany the
+ libmetaio source code.
