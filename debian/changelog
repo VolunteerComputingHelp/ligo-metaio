@@ -1,3 +1,11 @@
+ligo-metaio (8.4.0-2) stable; urgency=low
+
+  * cosmetics in debian/control for lintian
+  * Added "ligo-" prefix to source package because of a recent Apple
+    acquisition of the same name.
+
+ -- Steffen Moeller <moeller@debian.org>  Thu, 25 May 2017 00:30:57 +0200
+
 metaio (8.4.0-1) stable; urgency=low
 
   * relax requirement that Stream attributes have special order

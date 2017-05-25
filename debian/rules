@@ -1,8 +1,16 @@
 #!/usr/bin/make -f
+
 %:
-	dh $@
+	if [ ! -r debian/control ]; then sed -e 's/@SONAME@/1/' < debian/control.in > debian/control; fi
+	dh $@ --with-autoreconf
 
 override_dh_auto_configure:
+	if [ ! -r debian/control ]; then sed -e 's/@SONAME@/1/' < debian/control.in > debian/control; fi
 	./configure \
 	    --prefix=/usr \
 	    --without-matlab
+
+override_dh_auto_clean:
+	rm -rf 'ligotools/$$(top_builddir)' 'ligotools/$$(top_srcdir)'
+	rm -f debian/autoreconf.after debian/autoreconf.before
+	dh_auto_clean

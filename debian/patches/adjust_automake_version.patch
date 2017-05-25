@@ -1,0 +1,13 @@
+Index: ligo-metaio/configure.ac
+===================================================================
+--- ligo-metaio.orig/configure.ac
++++ ligo-metaio/configure.ac
+@@ -16,7 +16,7 @@ AC_CONFIG_FILES([ \
+ 	libmetaio.spec \
+ 	libmetaio.pc \
+ ])
+-AM_INIT_AUTOMAKE([foreign])
++AM_INIT_AUTOMAKE([foreign subdir-objects])
+ 
+ # Set the library API info
+ #  0.0.0   Original version

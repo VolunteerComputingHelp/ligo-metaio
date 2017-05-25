@@ -1,0 +1,13 @@
+Index: ligo-metaio/src/lwtprint.c
+===================================================================
+--- ligo-metaio.orig/src/lwtprint.c
++++ ligo-metaio/src/lwtprint.c
+@@ -513,7 +513,7 @@ int main( int argc, char **argv )
+       for ( i=0; i<ncols; i++ ) {
+ 	icol = collist[i];
+ 	if ( i > 0 )
+-          printf( delim );
++          printf("%s", delim );
+ 	if ( icol == PSEUDOCOL_ROW )
+ 	  fprintf( stdout, "%d", irow );
+ 	else
