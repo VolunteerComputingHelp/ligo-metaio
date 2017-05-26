@@ -1,0 +1,124 @@
+Index: ligo-metaio/configure.ac
+===================================================================
+--- ligo-metaio.orig/configure.ac
++++ ligo-metaio/configure.ac
+@@ -11,7 +11,6 @@ AC_CONFIG_FILES([ \
+ 	debian/Makefile \
+ 	debian/control \
+ 	src/Makefile \
+-	matlab/Makefile \
+ 	ligotools/Makefile \
+ 	libmetaio.spec \
+ 	libmetaio.pc \
+@@ -51,8 +50,8 @@ LT_INIT
+ 
+ # Checks for typedefs, structures, and compiler characteristics.
+ AC_C_CONST
+-AC_TYPE_SIZE_T
+-AX_CFLAGS_WARN_ALL([AM_CFLAGS])
++#AC_TYPE_SIZE_T
++#AX_CFLAGS_WARN_ALL([AM_CFLAGS])
+ AC_SUBST([AM_CFLAGS])
+ 
+ # Checks for libraries.
+@@ -76,18 +75,18 @@ if test x$HAVE_LIBZ = "xyes" ; then
+ fi
+ 
+ # Check for MatLab
+-AX_MATLAB
+-if test x$ax_enable_matlab != "xno" ; then
+-	AX_MATLAB_DIR
+-	AX_CC_MEX
+-	AX_MATLAB_SYS_ZLIB
+-	if test x$ac_cv_mex_working = "xyes" -a x$ac_cv_use_zlib = "xyes" -a x$ax_matlab_sys_zlib = "x" ; then
+-		AC_MSG_FAILURE([cannot find a version of zlib with gzungetc needed for readMeta])
+-	fi
+-fi
+-AX_MATLAB_CONDITIONAL
+-AX_MEX_CONDITIONAL
+-AM_CONDITIONAL([READMETA_MEX], [test x$ac_cv_mex_working = "xyes"])
++#AX_MATLAB
++#if test x$ax_enable_matlab != "xno" ; then
++#	AX_MATLAB_DIR
++#	AX_CC_MEX
++#	AX_MATLAB_SYS_ZLIB
++#	if test x$ac_cv_mex_working = "xyes" -a x$ac_cv_use_zlib = "xyes" -a x$ax_matlab_sys_zlib = "x" ; then
++#		AC_MSG_FAILURE([cannot find a version of zlib with gzungetc needed for readMeta])
++#	fi
++#fi
++#AX_MATLAB_CONDITIONAL
++#AX_MEX_CONDITIONAL
++#AM_CONDITIONAL([READMETA_MEX], [test x$ac_cv_mex_working = "xyes"])
+ 
+ # ligotools switch
+ AC_ARG_ENABLE(
+Index: ligo-metaio/ligotools/Makefile.am
+===================================================================
+--- ligo-metaio.orig/ligotools/Makefile.am
++++ ligo-metaio/ligotools/Makefile.am
+@@ -29,11 +29,11 @@ _getMetaLoopHelper_LDADD = libmetaio.la
+ libmetaio_la_SOURCES = $(top_srcdir)/src/metaio.c $(top_srcdir)/src/metaio.h $(top_srcdir)/src/ligo_lw_header.h
+ nodist_libmetaio_la_SOURCES = $(top_builddir)/src/ligo_lw_header.c
+ 
+-if READMETA_MEX
+-LIGOTOOLS_DIST_FILE = @PACKAGE_NAME@_@PACKAGE_VERSION@_$(host_triplet)-matlab-$(MATLAB_VERSION).tar.gz
+-else
++#if READMETA_MEX
++#LIGOTOOLS_DIST_FILE = @PACKAGE_NAME@_@PACKAGE_VERSION@_$(host_triplet)-matlab-$(MATLAB_VERSION).tar.gz
++#else
+ LIGOTOOLS_DIST_FILE = @PACKAGE_NAME@_@PACKAGE_VERSION@_$(host_triplet)-nomatlab.tar.gz
+-endif
++#endif
+ 
+ ligotools-local: all $(LIGOTOOLS_DIST_FILE)
+ 
+@@ -45,13 +45,13 @@ LIGOTOOLS_INCLUDE = \
+     $(top_srcdir)/src/metaio.h \
+     $(top_srcdir)/src/ligo_lw_header.h
+ 
+-if READMETA_MEX 
+-LIGOTOOLS_MATLAB = \
+-    $(top_srcdir)/matlab/readMeta.m \
+-    $(top_builddir)/matlab/readMeta$(MEXEXT)
+-else
++#if READMETA_MEX 
++#LIGOTOOLS_MATLAB = \
++#    $(top_srcdir)/matlab/readMeta.m \
++#    $(top_builddir)/matlab/readMeta$(MEXEXT)
++#else
+ LIGOTOOLS_MATLAB =
+-endif
++#endif
+ 
+ $(LIGOTOOLS_DIST_FILE): \
+     $(LIGOTOOLS_BIN) \
+@@ -72,9 +72,9 @@ $(LIGOTOOLS_DIST_FILE): \
+ 	if test ! -f pkgfiles ; then \
+           cp $(top_srcdir)/ligotools/pkgfiles . ; \
+         else :; fi;
+-if READMETA_MEX
+-	+cp $(LIGOTOOLS_MATLAB) matlab
+-endif
++#if READMETA_MEX
++#	+cp $(LIGOTOOLS_MATLAB) matlab
++#endif
+ 	tar cf - README HISTORY pkgfiles bin include lib matlab \
+           | gzip - > $(LIGOTOOLS_DIST_FILE)
+ 
+Index: ligo-metaio/Makefile.am
+===================================================================
+--- ligo-metaio.orig/Makefile.am
++++ ligo-metaio/Makefile.am
+@@ -7,9 +7,9 @@ include @top_srcdir@/ligotools/ligotools
+ if LIGOTOOLS
+ LIGOTOOLS_SUBDIR = ligotools
+ endif
+-if READMETA_MEX
+-MATLAB_SUBDIR = matlab
+-endif
++#if READMETA_MEX
++#MATLAB_SUBDIR = 
++#endif
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ 

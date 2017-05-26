@@ -1,2 +1,3 @@
 adjust_automake_version.patch
 typical_stricter_compilation_settings_cause_errors.patch
+configure.patch

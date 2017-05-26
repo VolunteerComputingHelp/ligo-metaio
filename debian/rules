@@ -2,15 +2,25 @@
 
 %:
 	if [ ! -r debian/control ]; then sed -e 's/@SONAME@/1/' < debian/control.in > debian/control; fi
-	dh $@ --with-autoreconf
+	dh $@ --with autotools-dev
+	#,autoreconf
 
 override_dh_auto_configure:
 	if [ ! -r debian/control ]; then sed -e 's/@SONAME@/1/' < debian/control.in > debian/control; fi
-	./configure \
-	    --prefix=/usr \
-	    --without-matlab
+	#dh_auto_configure -- --without-matlab
+	automake --add-missing
+	dh_auto_configure
+	#	-- --disable-matlab
+	#    --prefix=/usr \
 
 override_dh_auto_clean:
 	rm -rf 'ligotools/$$(top_builddir)' 'ligotools/$$(top_srcdir)'
 	rm -f debian/autoreconf.after debian/autoreconf.before
+	find src -name Makefile -delete
+	find src -name Makefile.in -delete
+	rm -f config.log config.status
+	rm -f Makefile Makefile.in
+	rm -f libmetaio.pc libmetaio.spec
+	find src -name "*.lo" -o -name "*.o" -delete
+	dh_autoreconf_clean
 	dh_auto_clean
