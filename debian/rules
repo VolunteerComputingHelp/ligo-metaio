@@ -8,6 +8,7 @@
 override_dh_auto_configure:
 	if [ ! -r debian/control ]; then sed -e 's/@SONAME@/1/' < debian/control.in > debian/control; fi
 	#dh_auto_configure -- --without-matlab
+	aclocal
 	automake --add-missing
 	dh_auto_configure
 	#	-- --disable-matlab
